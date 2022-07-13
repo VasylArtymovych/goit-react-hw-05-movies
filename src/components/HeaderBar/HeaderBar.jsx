@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default function HeaderBar() {
   return (
-    <Container width="100%" minHeight="60px" p={5}>
+    <Container>
       <StyledLink to="/">Home</StyledLink>
       <StyledLink to="/movies">Movies</StyledLink>
     </Container>

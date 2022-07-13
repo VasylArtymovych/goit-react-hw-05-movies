@@ -1,11 +1,11 @@
 import { NavLink, Outlet, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import MovieCard from 'components/MovieCard/MovieCard';
 import {
   fetchMovieById,
   fetchMovieCredits,
   fetchMovieReviews,
 } from 'components/ServerAPI/ServerApi';
-import Card from 'components/Card/Card';
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
@@ -14,7 +14,7 @@ export default function MovieDetailsPage() {
   const { movieId } = useParams();
 
   useEffect(() => {
-    const getMovieData = async () => {
+    (async () => {
       try {
         const [movieData, credits, reviews] = await Promise.all([
           fetchMovieById(movieId),
@@ -27,13 +27,12 @@ export default function MovieDetailsPage() {
       } catch (error) {
         console.log(error.message);
       }
-    };
-    getMovieData();
+    })();
   }, [movieId]);
 
   return (
     <>
-      {movie && <Card movie={movie} />}
+      {movie && <MovieCard movie={movie} />}
       <hr />
       <p>Additional information</p>
       <NavLink to="cast">Cast</NavLink>

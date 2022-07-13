@@ -1,13 +1,25 @@
 import Box from 'components/Box';
+import { useNavigate } from 'react-router-dom';
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
 
-export default function Card({ movie }) {
+export default function MovieCard({ movie }) {
   const { backdrop_path, poster_path, title, overview, genres, vote_average } =
     movie;
+  const navigate = useNavigate();
+  // const location = useLocation();
 
   return (
     <>
-      <button type="button">Go back</button>
+      <button
+        type="button"
+        onClick={() => {
+          navigate(-1);
+          // navigate(location?.state?.from?.pathname ?? '/movies');
+        }}
+      >
+        Go back
+      </button>
+
       <Box display="flex">
         <div>
           <img src={IMG_PATH + (backdrop_path ?? poster_path)} alt={title} />

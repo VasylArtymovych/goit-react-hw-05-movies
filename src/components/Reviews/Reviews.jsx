@@ -2,11 +2,11 @@ import { useOutletContext } from 'react-router-dom';
 
 export default function Reviews() {
   const { reviews } = useOutletContext();
-  console.log(reviews);
+
   return (
     <>
       {reviews &&
-        (reviews.results.length !== 0 ? (
+        (reviews.results.length > 0 ? (
           <ul>
             {reviews.results.map(({ id, author, content }) => (
               <li key={id}>

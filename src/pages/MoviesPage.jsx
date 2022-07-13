@@ -6,9 +6,12 @@ import MoviesList from 'components/MoviesList/MoviesList';
 export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
   const fetchMoviesByName = async name => {
-    const data = await searchMovie(name);
-    setMovies(data);
-    console.log(data);
+    try {
+      const data = await searchMovie(name);
+      setMovies(data);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (

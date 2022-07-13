@@ -4,7 +4,7 @@ const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
 
 export default function Cast() {
   const { cast } = useOutletContext();
-  console.log(cast);
+
   return (
     <>
       {cast && (

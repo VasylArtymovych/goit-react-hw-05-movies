@@ -1,7 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { searchMovie } from 'components/ServerAPI/ServerApi';
 
 const validationSchema = Yup.object().shape({
   search: Yup.string()
@@ -16,6 +15,7 @@ const SearchForm = ({ onSubmit }) => {
     onSubmit(search);
     resetForm();
   };
+
   return (
     <>
       <Formik
