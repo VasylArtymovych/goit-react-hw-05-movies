@@ -15,6 +15,7 @@ const Container = styled('div')`
   padding: ${p => p.theme.space[5]}px;
 
   border-bottom: 2px solid ${p => p.theme.colors.accent};
+  background: linear-gradient(to top right, rgb(16, 15, 60), rgb(85, 204, 225));
 `;
 
 const StyledLink = styled(NavLink)`

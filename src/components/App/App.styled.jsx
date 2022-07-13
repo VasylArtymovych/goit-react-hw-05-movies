@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 320px;
+  /* padding: 0 20px; */
   margin: 0 auto;
-  background: linear-gradient(to top right, rgb(16, 15, 60), rgb(85, 204, 225));
+  min-height: 100vh;
+  background: grey;
 
   box-shadow: ${({ theme }) => `0px 0px 10px ${theme.colors.primary}`};
 

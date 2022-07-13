@@ -1,9 +1,23 @@
+import { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
 import { fetchTrending } from 'components/ServerAPI/ServerApi';
-// import { useState } from 'react';
+import Title from 'components/Title/Title';
+import MoviesList from 'components/MoviesList/MoviesList';
 
 export default function HomePage() {
-  // const [movies, setMovies] = useState([]);
-  fetchTrending().then(console.log);
+  const [movies, setMovies] = useState([]);
 
-  return <div>Home</div>;
+  useEffect(() => {
+    (async () => {
+      const movies = await fetchTrending(616037);
+      setMovies(movies);
+    })();
+  }, []);
+
+  return (
+    <div>
+      <Title>Trending Today</Title>
+      <MoviesList moviesArr={movies} />
+    </div>
+  );
 }
