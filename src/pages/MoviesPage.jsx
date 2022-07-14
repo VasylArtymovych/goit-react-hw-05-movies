@@ -2,12 +2,17 @@ import { useState } from 'react';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { searchMovie } from 'components/ServerAPI/ServerApi';
 import MoviesList from 'components/MoviesList/MoviesList';
-
+import { toast } from 'react-toastify';
 export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
-  const fetchMoviesByName = async name => {
+
+  const onSubmitForm = async name => {
     try {
       const data = await searchMovie(name);
+      if (data.length === 0) {
+        toast.info(`Movie with name: ${name} not found!`);
+        return;
+      }
       setMovies(data);
     } catch (error) {
       console.log(error.message);
@@ -16,7 +21,7 @@ export default function MoviesPage() {
 
   return (
     <div>
-      <SearchForm onSubmit={fetchMoviesByName} />
+      <SearchForm onSubmit={onSubmitForm} />
       <MoviesList moviesArr={movies} />
     </div>
   );

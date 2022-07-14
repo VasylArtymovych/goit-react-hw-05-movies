@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 const axios = require('axios').default;
 
 const baseURL = 'https://api.themoviedb.org/3/';
@@ -74,4 +75,20 @@ export const fetchMovieReviews = async id => {
 
   const data = response.data;
   return data;
+};
+
+searchMovie.propTypes = {
+  query: PropTypes.string.isRequired,
+};
+
+fetchMovieById.propTypes = {
+  id: PropTypes.string.isRequired,
+};
+
+fetchMovieCredits.propTypes = {
+  id: PropTypes.string.isRequired,
+};
+
+fetchMovieReviews.propTypes = {
+  id: PropTypes.string.isRequired,
 };

@@ -9,7 +9,7 @@ export default function HomePage() {
   useEffect(() => {
     (async () => {
       try {
-        const movies = await fetchTrending(616037);
+        const movies = await fetchTrending();
         setMovies(movies);
       } catch (error) {
         console.log(error);
