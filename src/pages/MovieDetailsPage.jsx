@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
@@ -10,6 +10,7 @@ import Box from 'components/Box';
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     (async () => {
@@ -28,8 +29,12 @@ export default function MovieDetailsPage() {
 
       <Title>Additional information</Title>
       <Box pb={20}>
-        <StyledLink to="cast">Cast</StyledLink>
-        <StyledLink to="reviews">Reviews</StyledLink>
+        <StyledLink to="cast" state={{ from: location }}>
+          Cast
+        </StyledLink>
+        <StyledLink to="reviews" state={{ from: location }}>
+          Reviews
+        </StyledLink>
       </Box>
 
       <Suspense fallback={<Loader />}>

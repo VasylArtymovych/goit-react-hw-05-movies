@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import defaultImg from '../../images/default.jpeg';
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
@@ -8,7 +8,7 @@ export default function MovieCard({ movie }) {
   const { backdrop_path, poster_path, title, overview, genres, vote_average } =
     movie;
   const navigate = useNavigate();
-  // const location = useLocation();
+  const location = useLocation();
 
   const imgPath =
     backdrop_path || poster_path
@@ -19,8 +19,8 @@ export default function MovieCard({ movie }) {
       <GoBackBtn
         type="button"
         onClick={() => {
-          navigate(-1);
-          // navigate(location?.state?.from?.pathname ?? '/movies');
+          // navigate(-1);
+          navigate(location?.state?.from?.pathname ?? '/movies');
         }}
       >
         Go back
