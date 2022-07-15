@@ -48,7 +48,7 @@ export const fetchMovieById = async id => {
   return data;
 };
 
-export const fetchMovieCredits = async id => {
+export const fetchMovieCast = async id => {
   const response = await axios.get(
     baseURL +
       `movie/${id}/credits?` +
@@ -85,7 +85,7 @@ fetchMovieById.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-fetchMovieCredits.propTypes = {
+fetchMovieCast.propTypes = {
   id: PropTypes.string.isRequired,
 };
 

@@ -1,10 +1,26 @@
+import { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import { animateScroll } from 'react-scroll';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { animateScroll } from 'react-scroll';
+import { toast } from 'react-toastify';
+import { fetchMovieReviews } from 'components/ServerAPI/ServerApi';
 
 export default function Reviews() {
-  const { reviews } = useOutletContext();
+  const movieId = useOutletContext();
+  const [reviews, setReview] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const reviewData = await fetchMovieReviews(movieId);
+        setReview(reviewData);
+      } catch (error) {
+        toast.error(error.message);
+      }
+    })();
+  }, [movieId]);
+
   if (reviews) {
     animateScroll.scrollMore(250);
   }
@@ -30,7 +46,7 @@ export default function Reviews() {
 
 Reviews.propTypes = {
   reviews: PropTypes.shape({
-    results: PropTypes.array.isRequired,
+    movieId: PropTypes.string,
   }),
 };
 

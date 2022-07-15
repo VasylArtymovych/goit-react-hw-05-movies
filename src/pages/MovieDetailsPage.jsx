@@ -1,34 +1,23 @@
 import { NavLink, Outlet, useParams } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 import MovieCard from 'components/MovieCard/MovieCard';
-import {
-  fetchMovieById,
-  fetchMovieCredits,
-  fetchMovieReviews,
-} from 'components/ServerAPI/ServerApi';
+import { fetchMovieById } from 'components/ServerAPI/ServerApi';
 import Loader from 'components/Loader/Loader';
 import Box from 'components/Box';
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
-  const [cast, setCast] = useState(null);
-  const [reviews, setReviews] = useState(null);
   const { movieId } = useParams();
 
   useEffect(() => {
     (async () => {
       try {
-        const [movieData, credits, reviews] = await Promise.all([
-          fetchMovieById(movieId),
-          fetchMovieCredits(movieId),
-          fetchMovieReviews(movieId),
-        ]);
+        const movieData = await fetchMovieById(movieId);
         setMovie(movieData);
-        setCast(credits.cast);
-        setReviews(reviews);
       } catch (error) {
-        console.log(error.message);
+        toast.error(error.message);
       }
     })();
   }, [movieId]);
@@ -44,7 +33,7 @@ export default function MovieDetailsPage() {
       </Box>
 
       <Suspense fallback={<Loader />}>
-        <Outlet context={{ cast, reviews }} />
+        <Outlet context={movieId} />
       </Suspense>
     </>
   );

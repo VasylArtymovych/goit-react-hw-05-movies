@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import defaultImg from '../../images/default.jpeg';
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
 
 export default function MovieCard({ movie }) {
@@ -9,6 +10,10 @@ export default function MovieCard({ movie }) {
   const navigate = useNavigate();
   // const location = useLocation();
 
+  const imgPath =
+    backdrop_path || poster_path
+      ? IMG_PATH + (backdrop_path ?? poster_path)
+      : defaultImg;
   return (
     <>
       <GoBackBtn
@@ -23,7 +28,7 @@ export default function MovieCard({ movie }) {
 
       <Container>
         <ImgWraper>
-          <img src={IMG_PATH + (backdrop_path ?? poster_path)} alt={title} />
+          <img src={imgPath} alt={title} />
         </ImgWraper>
         <TextWraper>
           <MovieTitle>{title}</MovieTitle>
@@ -57,23 +62,28 @@ const Container = styled('div')`
   padding: 10px;
   @media (min-width: 768px) {
     padding: 20px;
+    flex-direction: row;
   }
 `;
 
 const ImgWraper = styled('div')`
   @media (max-width: 768px) {
     width: 100%;
-
-    & img {
-      display: block;
-      width: 100%;
-      object-fit: cover;
-    }
+  }
+  width: 40%;
+  margin-right: 20px;
+  & img {
+    display: block;
+    width: 100%;
+    object-fit: fill;
   }
 `;
 
 const TextWraper = styled('div')`
   width: 100%;
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 const MovieTitle = styled('h2')`
@@ -82,10 +92,15 @@ const MovieTitle = styled('h2')`
   font-size: 22px;
   font-weight: ${p => p.theme.fontWeights.bold};
   text-align: center;
+  text-shadow: -1px -1px 0 rgb(16, 15, 60), 1px -1px 0 rgb(16, 15, 60),
+    -1px 1px 0 rgb(16, 15, 60), 1px 1px 0 rgb(16, 15, 60);
 `;
 
 const StyledText = styled('p')`
   margin-bottom: 7px;
+  @media (min-width: 1200px) {
+    font-size: 18px;
+  }
 `;
 
 const StyledSpan = styled('span')`

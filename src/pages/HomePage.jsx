@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { fetchTrending } from 'components/ServerAPI/ServerApi';
 import Title from 'components/Title/Title';
 import MoviesList from 'components/MoviesList/MoviesList';
@@ -12,7 +13,7 @@ export default function HomePage() {
         const movies = await fetchTrending();
         setMovies(movies);
       } catch (error) {
-        console.log(error);
+        toast.error(error.message);
       }
     })();
   }, []);

@@ -4,12 +4,13 @@ import styled from 'styled-components';
 export default function HeaderBar() {
   return (
     <Container>
-      <StyledLink to="/goit-react-hw-05-movies">Home</StyledLink>
+      <StyledLink to="/">Home</StyledLink>
       <StyledLink to="/movies">Movies</StyledLink>
     </Container>
   );
 }
 
+//styled-components:
 const Container = styled('div')`
   width: 100%;
   padding: ${p => p.theme.space[5]}px;

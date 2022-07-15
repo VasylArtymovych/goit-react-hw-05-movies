@@ -14,11 +14,16 @@ const Reviews = lazy(() => import('components/Reviews/Reviews.jsx'));
 const App = () => {
   return (
     <Container>
-      <ToastContainer autoClose={1500} theme={'dark'} icon={true} />
+      <ToastContainer
+        autoClose={1500}
+        theme={'dark'}
+        icon={true}
+        pauseOnFocusLoss
+      />
       <HeaderBar />
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/goit-react-hw-05-movies" element={<HomePage />}></Route>
+          <Route path="/" element={<HomePage />}></Route>
           <Route path="/movies" element={<MoviesPage />}></Route>
           <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
             <Route path="cast" element={<Cast />}></Route>
