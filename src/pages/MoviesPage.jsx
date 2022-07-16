@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SearchForm from 'components/SearchForm/SearchForm';
-import { searchMovie } from 'components/ServerAPI/ServerApi';
+import { searchMovie } from '../ServerAPI/ServerApi';
 import MoviesList from 'components/MoviesList/MoviesList';
 import { toast } from 'react-toastify';
 export default function MoviesPage() {

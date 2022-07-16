@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { animateScroll } from 'react-scroll';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { toast } from 'react-toastify';
-import { fetchMovieReviews } from 'components/ServerAPI/ServerApi';
+import { fetchMovieReviews } from '../../ServerAPI/ServerApi';
+import { ReviewdList, ReviewdText } from './Reviews.styled';
 
 export default function Reviews() {
   const movieId = useOutletContext();
@@ -49,21 +49,3 @@ Reviews.propTypes = {
     movieId: PropTypes.string,
   }),
 };
-
-const ReviewdList = styled('ul')`
-  list-style: none;
-  padding: 0px 20px 20px;
-  font-size: ${p => p.theme.fontSizes.m}px;
-  & li {
-    padding: ${p => p.theme.space[2]}px;
-  }
-  & li:nth-child(odd) {
-    background: rgb(222, 208, 172);
-  }
-`;
-const ReviewdText = styled('p')`
-  font-size: 34px;
-  text-align: center;
-  padding-bottom: 20px;
-  color: ${p => p.theme.colors.accent};
-`;

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { animateScroll } from 'react-scroll';
 import { toast } from 'react-toastify';
-import { fetchMovieCast } from 'components/ServerAPI/ServerApi';
+import { fetchMovieCast } from '../../ServerAPI/ServerApi';
 import defaultPhoto from '../../images/default.jpeg';
+import { CasList } from './Cast.styled';
 
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500';
 
@@ -53,15 +53,3 @@ export default function Cast() {
 Cast.propTypes = {
   movieId: PropTypes.string,
 };
-
-const CasList = styled('ul')`
-  list-style: none;
-  padding: 0px 20px 20px;
-  font-size: ${p => p.theme.fontSizes.m}px;
-  & li {
-    padding: ${p => p.theme.space[2]}px;
-  }
-  & li:nth-child(odd) {
-    background: rgb(222, 208, 172);
-  }
-`;

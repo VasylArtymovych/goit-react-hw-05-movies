@@ -1,19 +1,27 @@
-import { Link, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link, useLocation, generatePath } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import routePaths from 'RouteSettings/Settings';
+import { List, Icon } from './MoviesList.styled';
 
 export default function MoviesList({ moviesArr }) {
   const location = useLocation();
 
   return (
     <List>
-      {moviesArr.map(({ id, title, original_name }) => (
-        <li key={id}>
-          <Link to={`/movies/${id}`} state={{ from: location }}>
-            {title || original_name}
-          </Link>
-        </li>
-      ))}
+      {moviesArr.map(({ id, title, original_name }) => {
+        const movieLink = generatePath(routePaths.movie, {
+          movieId: id,
+        });
+
+        return (
+          <li key={id}>
+            <Icon />
+            <Link to={movieLink} state={{ from: location }}>
+              {title || original_name}
+            </Link>
+          </li>
+        );
+      })}
     </List>
   );
 }
@@ -21,15 +29,3 @@ export default function MoviesList({ moviesArr }) {
 MoviesList.propTypes = {
   moviesArr: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
-
-const List = styled('ul')`
-  list-style-position: inside;
-  padding: 10px 20px;
-  font-size: ${p => p.theme.fontSizes.m}px;
-  & li {
-    padding: ${p => p.theme.space[2]}px;
-  }
-  & li:nth-child(odd) {
-    background: rgb(222, 208, 172);
-  }
-`;

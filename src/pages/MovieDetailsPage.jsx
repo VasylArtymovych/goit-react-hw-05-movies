@@ -3,7 +3,7 @@ import { useState, useEffect, Suspense } from 'react';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
 import MovieCard from 'components/MovieCard/MovieCard';
-import { fetchMovieById } from 'components/ServerAPI/ServerApi';
+import { fetchMovieById } from '../ServerAPI/ServerApi';
 import Loader from 'components/Loader/Loader';
 import Box from 'components/Box';
 
