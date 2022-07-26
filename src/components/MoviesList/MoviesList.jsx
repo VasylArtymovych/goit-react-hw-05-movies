@@ -1,7 +1,7 @@
-import { Link, useLocation, generatePath } from 'react-router-dom';
+import { useLocation, generatePath } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import routePaths from 'RouteSettings/Settings';
-import { List, Icon } from './MoviesList.styled';
+import { List, Icon, StyledLink } from './MoviesList.styled';
 
 export default function MoviesList({ moviesArr }) {
   const location = useLocation();
@@ -16,9 +16,12 @@ export default function MoviesList({ moviesArr }) {
         return (
           <li key={id}>
             <Icon />
-            <Link to={movieLink} state={{ from: location }}>
+            <StyledLink
+              to={location.pathname === '/' ? movieLink : `${id}`}
+              state={{ from: location }}
+            >
               {title || original_name}
-            </Link>
+            </StyledLink>
           </li>
         );
       })}

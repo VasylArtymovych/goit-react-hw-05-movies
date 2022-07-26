@@ -4,6 +4,7 @@ export const Theme = {
     black: '#000',
     text: '#000',
     title: '#0c0d37',
+    active: '#961212',
     background: '#20180B',
     primary: '#DFE6E3',
     secondary: '#05a',
@@ -39,7 +40,7 @@ export const Theme = {
   },
   radii: {
     none: '0',
-    normal: '4px',
+    normal: '5px',
     round: '50%',
   },
   media: {

@@ -17,8 +17,11 @@ const StyledLink = styled(NavLink)`
   color: ${p => p.theme.colors.primary};
 
   &.active {
-    color: #961212;
+    color: ${p => p.theme.colors.active};
     text-decoration: underline;
+  }
+  &:hover:not(.active) {
+    color: ${p => p.theme.colors.accent};
   }
 `;
 export { Container, StyledLink };

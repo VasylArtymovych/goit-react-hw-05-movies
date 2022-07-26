@@ -4,20 +4,25 @@ const axios = require('axios').default;
 const baseURL = 'https://api.themoviedb.org/3/';
 const api_key = '9c009c00402fb866baf05bd346a2d01d';
 
-export const fetchTrending = async () => {
+export const fetchTrending = async (page = 1) => {
   const response = await axios.get(
     baseURL +
       'trending/all/day?' +
       new URLSearchParams({
         api_key,
+        page: page,
       })
   );
 
   const data = response.data;
-  return data.results;
+  return {
+    results: data.results,
+    page: data.page,
+    totalPages: data.total_pages,
+  };
 };
 
-export const searchMovie = async query => {
+export const searchMovie = async (query, page = 1) => {
   const response = await axios.get(
     baseURL +
       `search/movie?` +
@@ -25,13 +30,17 @@ export const searchMovie = async query => {
         api_key,
         query,
         language: 'en-US',
-        page: 1,
+        page: page,
         include_adult: false,
       })
   );
 
   const data = response.data;
-  return data.results;
+  return {
+    results: data.results,
+    page: data.page,
+    totalPages: data.total_pages,
+  };
 };
 
 export const fetchMovieById = async id => {

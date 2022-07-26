@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TbMovie } from 'react-icons/tb';
+import { NavLink } from 'react-router-dom';
 
 export const List = styled('ul')`
   list-style: none;
@@ -14,8 +15,18 @@ export const List = styled('ul')`
   & li:nth-child(odd) {
     background: rgb(222, 208, 172);
   }
+
+  & li a {
+    color: ${p => p.theme.colors.text};
+  }
 `;
 
 export const Icon = styled(TbMovie)`
   margin-right: 5px;
+`;
+
+export const StyledLink = styled(NavLink)`
+  &:hover:not(.active) {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
