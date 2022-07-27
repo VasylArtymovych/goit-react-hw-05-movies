@@ -59,6 +59,7 @@ const List = styled('ul')`
   li {
     margin-right: 5px;
     font-size: 14px;
+    color: ${p => p.theme.colors.accent};
   }
 `;
 

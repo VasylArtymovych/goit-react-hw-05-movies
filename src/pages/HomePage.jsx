@@ -40,11 +40,13 @@ export default function HomePage() {
     <div>
       <Title>Trending Today</Title>
       <MoviesList moviesArr={movies} />
-      <Pagination
-        page={currentPage}
-        totalPages={totalPages}
-        onClick={onBtnClick}
-      />
+      {movies.length > 1 && (
+        <Pagination
+          page={currentPage}
+          totalPages={totalPages}
+          onClick={onBtnClick}
+        />
+      )}
     </div>
   );
 }
