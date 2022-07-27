@@ -5,13 +5,12 @@ const usePagination = (page = 1, total = 1) => {
 
   const onBtnClick = e => {
     const value = e.target.textContent;
-    if (value === 'right') {
-      setCurrentPage(state => state + 1);
-      return;
+
+    if (value === 'next') {
+      return setCurrentPage(state => state + 1);
     }
-    if (value === 'left') {
-      setCurrentPage(state => state - 1);
-      return;
+    if (value === 'prev') {
+      return setCurrentPage(state => state - 1);
     }
     setCurrentPage(Number(value));
   };

@@ -17,7 +17,14 @@ export const List = styled('ul')`
   }
 
   & li a {
+    display: flex;
+    align-items: center;
     color: ${p => p.theme.colors.text};
+  }
+
+  & li img {
+    display: block;
+    margin-right: 10px;
   }
 `;
 

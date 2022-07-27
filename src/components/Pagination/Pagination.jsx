@@ -17,7 +17,7 @@ const Pagination = ({ page, totalPages, onClick }) => {
     >
       {page > 1 && (
         <StyledBtn type="button" onClick={onClick}>
-          left
+          prev
         </StyledBtn>
       )}
       {page > 1 && (
@@ -57,7 +57,7 @@ const Pagination = ({ page, totalPages, onClick }) => {
       )}
       {page < totalPages && (
         <StyledBtn type="button" onClick={onClick}>
-          right
+          next
         </StyledBtn>
       )}
     </Box>
